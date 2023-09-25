@@ -10,17 +10,17 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(sessionManager: SessionManager) : ViewModel() {
 
-    private val mNavigateToDirection = MutableLiveData<SplashNavigationDirection>()
-    val navigateToDirection: LiveData<SplashNavigationDirection>
-        get() = mNavigateToDirection
+    private val mUiState = MutableLiveData<SplashUiState>(SplashUiState.Loading)
+    val uiState: LiveData<SplashUiState>
+        get() = mUiState
 
     init {
         viewModelScope.launch {
             delay(2000)
-            mNavigateToDirection.value = if (sessionManager.isLoggedIn()) {
-                SplashNavigationDirection.ToHome
+            mUiState.value = if (sessionManager.isLoggedIn()) {
+                SplashUiState.NavigateToHome
             } else {
-                SplashNavigationDirection.ToLogin
+                SplashUiState.NavigateToLogin
             }
         }
     }

@@ -21,11 +21,16 @@ class SplashActivity : ComponentActivity() {
     }
 
     private fun observeViewModel() {
-        viewModel.navigateToDirection.observe(this) { direction ->
-            when (direction) {
-                SplashNavigationDirection.ToHome -> navigateToHome()
-                SplashNavigationDirection.ToLogin -> navigateToLogin()
-            }
+        viewModel.uiState.observe(this) { direction ->
+            handleUiState(direction)
+        }
+    }
+
+    private fun handleUiState(direction: SplashUiState) {
+        when (direction) {
+            SplashUiState.NavigateToHome -> navigateToHome()
+            SplashUiState.NavigateToLogin -> navigateToLogin()
+            else -> {}
         }
     }
 

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
 }
 
 android {
@@ -15,6 +16,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -45,6 +51,7 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.koin.android)
     testImplementation(libs.junit)
+    kapt(libs.databinding.compiler)
     androidTestImplementation(libs.android.junit)
     androidTestImplementation(libs.android.espresso)
 }

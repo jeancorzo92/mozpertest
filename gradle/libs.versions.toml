@@ -14,6 +14,7 @@ navigation = "2.7.3"
 [libraries]
 android-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx"}
 android-material = { group = "com.google.android.material", name = "material", version.ref = "material"}
+databinding-compiler = { module = "androidx.databinding:databinding-compiler", version.ref = "androidGradlePlugin" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 junit = { group = "junit", name = "junit", version.ref = "junit"}
 android-junit = { group = "androidx.test.ext", name = "junit", version.ref = "android-junit"}
