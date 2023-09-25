@@ -38,7 +38,6 @@ android {
 dependencies {
 
     implementation(libs.android.ktx)
-    implementation(libs.android.appcompat)
     implementation(libs.android.material)
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment.ktx)

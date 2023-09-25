@@ -3,14 +3,14 @@ package com.jeancorzo.rickandmorty.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.home.HomeActivity
 import com.jeancorzo.rickandmorty.login.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : ComponentActivity() {
 
     private val viewModel: SplashViewModel by viewModel()
 

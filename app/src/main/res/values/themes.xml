@@ -1,21 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RickAndMorty" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.RickAndMorty" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green_variant</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary_light_variant</item>
+        <item name="colorOnPrimary">@color/on_primary_light</item>
+        <item name="colorPrimaryContainer">@color/primary_container_light</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container_light</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal</item>
-        <item name="colorSecondaryVariant">@color/teal_variant</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/secondary_light</item>
+        <item name="colorSecondaryVariant">@color/secondary_light_variant</item>
+        <item name="colorOnSecondary">@color/on_secondary_light</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_light</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container_light</item>
+        <!-- Tertiary brand color. -->
+        <item name="colorTertiary">@color/tertiary_light</item>
+        <item name="colorOnTertiary">@color/on_tertiary_light</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container_light</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container_light</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Error. -->
+        <item name="colorError">@color/error_light</item>
+        <item name="colorOnError">@color/on_error_light</item>
+        <item name="colorErrorContainer">@color/error_container_light</item>
+        <item name="colorOnErrorContainer">@color/on_error_container_light</item>
+        <!-- Background and Surface -->
+        <item name="backgroundColor">@color/background_light</item>
+        <item name="colorOnBackground">@color/on_background_light</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorOnSurface">@color/on_surface_light</item>
+        <item name="colorSurfaceVariant">@color/surface_variant_light</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant_light</item>
+        <item name="colorOutline">@color/outline_light</item>
     </style>
-    <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green_variant</item>
+    <style name="Theme.RickAndMorty.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary_light_variant</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="backgroundColor">@color/background_light</item>
     </style>
 </resources>
