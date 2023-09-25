@@ -1,15 +1,27 @@
 [versions]
+androidGradlePlugin = "8.1.1"
+datastorePreferences = "1.0.0"
+kotlin = "1.9.0"
 ktx = "1.12.0"
 appcompat = "1.6.1"
 material = "1.9.0"
 junit = "4.13.2"
 android-junit = "1.1.5"
 espresso = "3.5.1"
+org-jetbrains-kotlin-android = "1.9.0"
+constraintlayout = "2.1.4"
+navigation = "2.7.3"
 [libraries]
 android-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx"}
 android-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat"}
 android-material = { group = "com.google.android.material", name = "material", version.ref = "material"}
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 junit = { group = "junit", name = "junit", version.ref = "junit"}
-android-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit"}
+android-junit = { group = "androidx.test.ext", name = "junit", version.ref = "android-junit"}
 android-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso"}
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 [plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

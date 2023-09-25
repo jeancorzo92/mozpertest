@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.jeancorzo.rickandmorty"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.jeancorzo.rickandmorty"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -40,6 +40,10 @@ dependencies {
     implementation(libs.android.ktx)
     implementation(libs.android.appcompat)
     implementation(libs.android.material)
+    implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.datastore.preferences)
     testImplementation(libs.junit)
     androidTestImplementation(libs.android.junit)
     androidTestImplementation(libs.android.espresso)
