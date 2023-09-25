@@ -16,8 +16,7 @@
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true"
-            android:noHistory="true"
-            android:theme="@style/Theme.RickAndMorty.NoActionBar">
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +25,7 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RickAndMorty.NoActionBar"/>
+            android:exported="false"/>
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
