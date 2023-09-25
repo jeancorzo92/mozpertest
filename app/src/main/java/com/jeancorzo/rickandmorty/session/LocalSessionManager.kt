@@ -9,6 +9,4 @@ class LocalSessionManager(private val preferenceDataStoreApi: PreferenceDataStor
         return preferenceDataStoreApi.getFirstPreference(PreferenceDataStoreConstants.IS_LOGGED_IN, false)
     }
 
-
-
 }
