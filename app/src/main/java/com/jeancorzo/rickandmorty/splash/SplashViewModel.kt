@@ -5,23 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeancorzo.rickandmorty.session.SessionManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashViewModel(sessionManager: SessionManager) : ViewModel() {
+class SplashViewModel(private val sessionManager: SessionManager) : ViewModel() {
 
     private val mUiState = MutableLiveData<SplashUiState>(SplashUiState.Loading)
     val uiState: LiveData<SplashUiState> = mUiState
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             delay(2000)
-            mUiState.value = if (sessionManager.isLoggedIn()) {
-                SplashUiState.NavigateToHome
-            } else {
-                SplashUiState.NavigateToLogin
-            }
+            checkSession()
         }
+    }
+
+    private suspend fun checkSession() {
+        mUiState.postValue(if (sessionManager.isLoggedIn()) {
+            SplashUiState.NavigateToHome
+        } else {
+            SplashUiState.NavigateToLogin
+        })
     }
 
 }

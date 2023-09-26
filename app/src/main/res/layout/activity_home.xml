@@ -7,20 +7,6 @@
     android:background="?attr/colorSurface"
     tools:context=".home.HomeActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/home_appbar"
-        style="@style/Widget.MaterialComponents.Toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        app:buttonGravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/home_toolbar_menu"
-        app:navigationIconTint="?attr/colorPrimary"
-        app:title="@string/app_name"
-        app:titleCentered="true" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/home_nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -30,7 +16,7 @@
         app:layout_constraintBottom_toTopOf="@+id/home_bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_appbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/home_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

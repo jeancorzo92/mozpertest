@@ -11,9 +11,6 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
-    versionCatalogs {
-
-    }
 }
 
 rootProject.name = "RickAndMorty"

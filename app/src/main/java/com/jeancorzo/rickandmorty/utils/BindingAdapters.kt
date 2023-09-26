@@ -7,7 +7,7 @@ import coil.transform.RoundedCornersTransformation
 import com.jeancorzo.rickandmorty.R
 
 
-@BindingAdapter("app:imageUrl")
+@BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, imageUrl: String) {
     view.load(imageUrl) {
         val pixels = view.context.resources.getDimensionPixelSize(R.dimen.recycler_item_image_corners).toFloat()

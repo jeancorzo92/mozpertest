@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeancorzo.rickandmorty.session.SessionManager
 import com.jeancorzo.rickandmorty.utils.CombineLiveData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val sessionManager: SessionManager) : ViewModel() {
@@ -19,10 +20,10 @@ class LoginViewModel(private val sessionManager: SessionManager) : ViewModel() {
     val uiState: LiveData<LoginUiState> = mUiState
 
     fun login() {
-        viewModelScope.launch {
-            mUiState.value = LoginUiState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            mUiState.postValue(LoginUiState.Loading)
             sessionManager.logIn()
-            mUiState.value = LoginUiState.LoginSuccess
+            mUiState.postValue(LoginUiState.LoginSuccess)
         }
     }
 

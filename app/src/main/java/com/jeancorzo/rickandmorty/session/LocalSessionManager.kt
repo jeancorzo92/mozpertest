@@ -14,4 +14,8 @@ class LocalSessionManager(private val preferenceDataStoreApi: PreferenceDataStor
         delay(1000)
         preferenceDataStoreApi.putPreference(PreferenceDataStoreConstants.IS_LOGGED_IN, true)
     }
+
+    override suspend fun logOut() {
+        preferenceDataStoreApi.clearPreferences()
+    }
 }
