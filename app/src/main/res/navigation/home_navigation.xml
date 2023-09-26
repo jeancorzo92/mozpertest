@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/characters"
-        android:name="com.jeancorzo.rickandmorty.home.CharactersFragment"
+        android:name="com.jeancorzo.rickandmorty.characters.ui.CharactersFragment"
         android:label="fragment_characters"
         tools:layout="@layout/fragment_characters" >
         <action

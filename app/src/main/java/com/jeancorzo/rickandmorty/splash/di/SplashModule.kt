@@ -1,11 +1,9 @@
-package com.jeancorzo.rickandmorty.di
+package com.jeancorzo.rickandmorty.splash.di
 
-import com.jeancorzo.rickandmorty.login.LoginViewModel
 import com.jeancorzo.rickandmorty.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
-val viewModelModule = module {
+val splashModule = module {
     viewModelOf(::SplashViewModel)
-    viewModelOf(::LoginViewModel)
 }

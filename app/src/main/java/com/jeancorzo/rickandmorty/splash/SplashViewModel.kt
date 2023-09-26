@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 class SplashViewModel(sessionManager: SessionManager) : ViewModel() {
 
     private val mUiState = MutableLiveData<SplashUiState>(SplashUiState.Loading)
-    val uiState: LiveData<SplashUiState>
-        get() = mUiState
+    val uiState: LiveData<SplashUiState> = mUiState
 
     init {
         viewModelScope.launch {

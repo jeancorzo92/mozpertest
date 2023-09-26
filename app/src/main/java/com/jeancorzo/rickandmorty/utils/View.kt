@@ -1,6 +1,7 @@
 package com.jeancorzo.rickandmorty.utils
 
 import android.view.View
+import android.view.ViewGroup
 
 fun View.gone() {
     this.visibility = View.GONE

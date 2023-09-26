@@ -16,8 +16,7 @@ class LoginViewModel(private val sessionManager: SessionManager) : ViewModel() {
         validateCredentials(username, password)
     }
     private val mUiState = MutableLiveData<LoginUiState>(LoginUiState.WaitingUserInput)
-    val uiState: LiveData<LoginUiState>
-        get() = mUiState
+    val uiState: LiveData<LoginUiState> = mUiState
 
     fun login() {
         viewModelScope.launch {
