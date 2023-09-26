@@ -32,26 +32,17 @@
 
             <TextView
                 android:id="@+id/item_character_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:ellipsize="marquee"
                 android:text="@{character.name}"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/item_character_support_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_character_image"
                 tools:text="Rick Sánchez" />
-
-            <TextView
-                android:id="@+id/item_character_support_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{character.status}"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/item_character_text"
-                app:layout_constraintTop_toBottomOf="@+id/item_character_text"
-                tools:text="Alive" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

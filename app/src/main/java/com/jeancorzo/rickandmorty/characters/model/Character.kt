@@ -1,7 +1,7 @@
 package com.jeancorzo.rickandmorty.characters.model
 
 data class Character(
-    val id: Long = -1,
+    val id: Int = -1,
     val name: String = "",
     val status: String = "",
     val species: String = "",

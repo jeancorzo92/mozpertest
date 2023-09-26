@@ -29,12 +29,6 @@ class CharactersRecyclerAdapter(
         notifyDataSetChanged()
     }
 
-    fun addCharacters(characterList: List<Character>) {
-        val startingPosition = mCharacterList.size
-        mCharacterList.addAll(characterList)
-        notifyItemRangeInserted(startingPosition, characterList.size)
-    }
-
     inner class CharacterViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bind(character: Character) {

@@ -15,9 +15,6 @@ import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
 import com.jeancorzo.rickandmorty.utils.gone
 import com.jeancorzo.rickandmorty.utils.visible
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.observeOn
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -56,8 +53,7 @@ class CharactersFragment : Fragment() {
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect { uiState ->
                     when (uiState) {
-                        is CharactersUiState.DisplayCharacters -> showCharacterList(uiState.characterList)
-                        is CharactersUiState.AddCharacters -> addCharactersToList(uiState.characterList)
+                        is CharactersUiState.ShowCharacters -> showCharacterList(uiState.characterList)
                         CharactersUiState.ErrorLoadingCharacters -> showErrorView()
                         CharactersUiState.Loading -> showLoadingView()
                     }
@@ -68,10 +64,6 @@ class CharactersFragment : Fragment() {
     private fun showCharacterList(characterList: List<Character>) {
         binding.charactersLoading.viewLoading.gone()
         charactersRecyclerAdapter.setCharacterList(characterList)
-    }
-
-    private fun addCharactersToList(characterList: List<Character>) {
-        charactersRecyclerAdapter.addCharacters(characterList)
     }
 
     private fun showErrorView() {

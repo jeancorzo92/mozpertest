@@ -13,9 +13,11 @@
         tools:context=".characters.ui.CharactersFragment" />
 
     <include
-        layout="@layout/view_loading"
         android:id="@+id/characters_loading"
-        android:visibility="gone"/>
+        layout="@layout/view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </FrameLayout>
 

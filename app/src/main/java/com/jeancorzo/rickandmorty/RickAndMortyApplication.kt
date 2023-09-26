@@ -8,6 +8,7 @@ import coil.memory.MemoryCache
 import com.jeancorzo.rickandmorty.characters.di.charactersModule
 import com.jeancorzo.rickandmorty.di.appModule
 import com.jeancorzo.rickandmorty.login.di.loginModule
+import com.jeancorzo.rickandmorty.service.di.serviceModule
 import com.jeancorzo.rickandmorty.session.di.sessionModule
 import com.jeancorzo.rickandmorty.splash.di.splashModule
 import com.jeancorzo.rickandmorty.storage.di.storageModule
@@ -29,7 +30,8 @@ class RickAndMortyApplication : Application(), ImageLoaderFactory {
                 loginModule,
                 sessionModule,
                 storageModule,
-                charactersModule
+                charactersModule,
+                serviceModule
             )
         }
     }
