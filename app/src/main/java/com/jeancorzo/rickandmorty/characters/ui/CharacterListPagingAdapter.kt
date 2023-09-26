@@ -9,7 +9,6 @@ import com.jeancorzo.rickandmorty.characters.model.Character
 import com.jeancorzo.rickandmorty.databinding.ItemCharacterBinding
 
 class CharacterListPagingAdapter(
-    diffCallback: DiffUtil.ItemCallback<Character> = CharacterComparator,
     private val onCharacterClickListener: CharacterClickListener = CharacterClickListener {}
 ) : PagingDataAdapter<Character, CharacterListPagingAdapter.CharacterViewHolder>(CharacterComparator) {
 

@@ -34,4 +34,8 @@
         <item name="colorOnSurfaceVariant">@color/on_surface_variant_light</item>
         <item name="colorOutline">@color/outline_light</item>
     </style>
+
+    <style name="CharacterDetailTextView" parent="Theme.RickAndMorty">
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>
