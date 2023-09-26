@@ -2,35 +2,18 @@ package com.jeancorzo.rickandmorty.characters.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.cachedIn
 import com.jeancorzo.rickandmorty.characters.model.Character
-import com.jeancorzo.rickandmorty.characters.repository.CharactersRepositoryAPI
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 class CharactersViewModel(
-    private val charactersRepositoryAPI: CharactersRepositoryAPI
+    private val charactersPagingSource: PagingSource<Int, Character>
 ) : ViewModel() {
 
-    private val characterList = mutableListOf<Character>()
+    val characterList = Pager(PagingConfig(20)) {
+        charactersPagingSource
+    }.flow.cachedIn(viewModelScope)
 
-    private val mUiState = MutableStateFlow<CharactersUiState>(CharactersUiState.Loading)
-    val uiState: StateFlow<CharactersUiState> = mUiState
-
-    init {
-        loadCharacters()
-    }
-
-    private fun loadCharacters() {
-        viewModelScope.launch(Dispatchers.IO) {
-            charactersRepositoryAPI.getCharacterList().collect { characters ->
-                characterList.addAll(characters)
-                mUiState.emit(CharactersUiState.ShowCharacters(characters))
-            }
-        }
-    }
 }

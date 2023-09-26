@@ -7,4 +7,6 @@
     <string name="locations">Locations</string>
     <string name="episodes">Episodes</string>
     <string name="log_out">Log Out</string>
+    <string name="retry">Retry</string>
+    <string name="error_loading_data">Error loading data</string>
 </resources>

@@ -10,11 +10,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jeancorzo.rickandmorty.R
-import com.jeancorzo.rickandmorty.characters.model.Character
 import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
+import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
+import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
 import com.jeancorzo.rickandmorty.utils.gone
-import com.jeancorzo.rickandmorty.utils.visible
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +24,9 @@ class CharactersFragment : Fragment() {
     private var mBinding: FragmentCharactersBinding? = null
     private val binding get() = mBinding!!
     private val viewModel: CharactersViewModel by viewModel()
-    private val charactersRecyclerAdapter by lazy { CharactersRecyclerAdapter(listOf()) }
+    private val characterListAdapter = CharacterListPagingAdapter()
+    private val footerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,38 +43,23 @@ class CharactersFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        val layoutManager = GridLayoutManager(requireContext(), 2)
+        val layoutManager = GridLayoutManager(requireContext(), 2).apply {
+            spanSizeLookup = GridSpanSizeLookup(2, characterListAdapter, footerAdapter)
+        }
         val itemDecoration = ItemOffsetDecoration(requireContext(), R.dimen.recycler_item_offset)
-        binding.charactersRecyclerView.adapter = charactersRecyclerAdapter
+        binding.charactersRecyclerView.adapter = characterListAdapter.withLoadStateFooter(footerAdapter)
         binding.charactersRecyclerView.layoutManager = layoutManager
         binding.charactersRecyclerView.addItemDecoration(itemDecoration)
     }
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState
+            viewModel.characterList
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { uiState ->
-                    when (uiState) {
-                        is CharactersUiState.ShowCharacters -> showCharacterList(uiState.characterList)
-                        CharactersUiState.ErrorLoadingCharacters -> showErrorView()
-                        CharactersUiState.Loading -> showLoadingView()
-                    }
+                .collectLatest {
+                    characterListAdapter.submitData(it)
                 }
         }
-    }
-
-    private fun showCharacterList(characterList: List<Character>) {
-        binding.charactersLoading.viewLoading.gone()
-        charactersRecyclerAdapter.setCharacterList(characterList)
-    }
-
-    private fun showErrorView() {
-        binding.charactersLoading.viewLoading.gone()
-    }
-
-    private fun showLoadingView() {
-        binding.charactersLoading.viewLoading.visible()
     }
 
     override fun onDestroyView() {

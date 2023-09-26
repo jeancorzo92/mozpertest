@@ -12,12 +12,5 @@
         android:padding="@dimen/recycler_item_offset"
         tools:context=".characters.ui.CharactersFragment" />
 
-    <include
-        android:id="@+id/characters_loading"
-        layout="@layout/view_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
-
 </FrameLayout>
 

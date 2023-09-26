@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
+    implementation(libs.paging.runtime.ktx)
     testImplementation(libs.junit)
     kapt(libs.databinding.compiler)
     androidTestImplementation(libs.android.junit)
