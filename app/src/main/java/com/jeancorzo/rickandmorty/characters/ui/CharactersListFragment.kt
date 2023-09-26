@@ -8,23 +8,26 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jeancorzo.rickandmorty.R
+import com.jeancorzo.rickandmorty.characters.model.Character
 import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
 import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
 import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
-import com.jeancorzo.rickandmorty.utils.gone
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CharactersFragment : Fragment() {
+class CharactersListFragment : Fragment() {
 
     private var mBinding: FragmentCharactersBinding? = null
     private val binding get() = mBinding!!
     private val viewModel: CharactersViewModel by viewModel()
-    private val characterListAdapter = CharacterListPagingAdapter()
+    private val characterListAdapter = CharacterListPagingAdapter { character ->
+        navigateToCharacterDetail(character)
+    }
     private val footerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
 
 
@@ -60,6 +63,10 @@ class CharactersFragment : Fragment() {
                     characterListAdapter.submitData(it)
                 }
         }
+    }
+
+    private fun navigateToCharacterDetail(character: Character) {
+        findNavController().navigate(CharactersListFragmentDirections.toCharacterDetail(title = character.name, character))
     }
 
     override fun onDestroyView() {

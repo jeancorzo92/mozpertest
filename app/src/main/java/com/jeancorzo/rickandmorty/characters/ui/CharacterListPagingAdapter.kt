@@ -9,8 +9,9 @@ import com.jeancorzo.rickandmorty.characters.model.Character
 import com.jeancorzo.rickandmorty.databinding.ItemCharacterBinding
 
 class CharacterListPagingAdapter(
-    diffCallback: DiffUtil.ItemCallback<Character> = CharacterComparator
-) : PagingDataAdapter<Character, CharacterViewHolder>(CharacterComparator) {
+    diffCallback: DiffUtil.ItemCallback<Character> = CharacterComparator,
+    private val onCharacterClickListener: CharacterClickListener = CharacterClickListener {}
+) : PagingDataAdapter<Character, CharacterListPagingAdapter.CharacterViewHolder>(CharacterComparator) {
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         getItem(position)?.let {
@@ -24,13 +25,19 @@ class CharacterListPagingAdapter(
         return CharacterViewHolder(binding)
     }
 
+    inner class CharacterViewHolder(private val binding: ItemCharacterBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(character: Character) {
+            binding.character = character
+            binding.characterItemClick = onCharacterClickListener
+            binding.executePendingBindings()
+        }
+    }
+
 }
 
-class CharacterViewHolder(private val binding: ItemCharacterBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(character: Character) {
-        binding.character = character
-    }
+fun interface CharacterClickListener {
+    fun onCharacterClicked(character: Character)
 }
 
 object CharacterComparator : DiffUtil.ItemCallback<Character>() {

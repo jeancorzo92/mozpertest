@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.home
+package com.jeancorzo.rickandmorty.locations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

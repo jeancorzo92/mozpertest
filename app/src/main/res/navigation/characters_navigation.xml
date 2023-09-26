@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/characters_navigation"
+    app:startDestination="@id/characters">
+    <fragment
+        android:id="@+id/characters"
+        android:name="com.jeancorzo.rickandmorty.characters.ui.CharactersListFragment"
+        android:label="@string/characters"
+        tools:layout="@layout/fragment_characters">
+
+        <action
+            android:id="@+id/to_characterDetail"
+            app:destination="@id/characterDetail" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/characterDetail"
+        android:name="com.jeancorzo.rickandmorty.characters.ui.CharacterDetailFragment"
+        android:label="{title}">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="character"
+            app:argType="com.jeancorzo.rickandmorty.characters.model.Character" />
+    </fragment>
+
+
+</navigation>

@@ -9,4 +9,7 @@
     <string name="log_out">Log Out</string>
     <string name="retry">Retry</string>
     <string name="error_loading_data">Error loading data</string>
+    <string name="logout_confirmation_title">Are you sure you want to log out?</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
 </resources>

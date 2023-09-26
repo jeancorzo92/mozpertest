@@ -8,12 +8,17 @@
         <variable
             name="character"
             type="com.jeancorzo.rickandmorty.characters.model.Character" />
+
+        <variable
+            name="characterItemClick"
+            type="com.jeancorzo.rickandmorty.characters.ui.CharacterClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true">
+        android:clickable="true"
+        android:onClick="@{() -> characterItemClick.onCharacterClicked(character)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

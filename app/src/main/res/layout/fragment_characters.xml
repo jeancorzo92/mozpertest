@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:padding="@dimen/recycler_item_offset"
-        tools:context=".characters.ui.CharactersFragment" />
+        tools:context=".characters.ui.CharactersListFragment" />
 
 </FrameLayout>
 
