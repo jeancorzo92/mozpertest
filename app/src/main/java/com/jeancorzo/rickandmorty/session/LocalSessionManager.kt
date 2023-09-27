@@ -1,7 +1,7 @@
 package com.jeancorzo.rickandmorty.session
 
-import com.jeancorzo.rickandmorty.storage.PreferenceDataStoreApi
-import com.jeancorzo.rickandmorty.storage.PreferenceDataStoreConstants
+import com.jeancorzo.rickandmorty.storage.preferences.PreferenceDataStoreApi
+import com.jeancorzo.rickandmorty.storage.preferences.PreferenceDataStoreConstants
 import kotlinx.coroutines.delay
 
 class LocalSessionManager(private val preferenceDataStoreApi: PreferenceDataStoreApi) : SessionManager {

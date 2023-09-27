@@ -12,7 +12,8 @@ import com.jeancorzo.rickandmorty.login.di.loginModule
 import com.jeancorzo.rickandmorty.service.di.serviceModule
 import com.jeancorzo.rickandmorty.session.di.sessionModule
 import com.jeancorzo.rickandmorty.splash.di.splashModule
-import com.jeancorzo.rickandmorty.storage.di.storageModule
+import com.jeancorzo.rickandmorty.storage.db.di.databaseModule
+import com.jeancorzo.rickandmorty.storage.preferences.di.storageModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -33,7 +34,8 @@ class RickAndMortyApplication : Application(), ImageLoaderFactory {
                 charactersModule,
                 sessionModule,
                 storageModule,
-                serviceModule
+                serviceModule,
+                databaseModule
             )
         }
     }

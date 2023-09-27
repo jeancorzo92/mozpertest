@@ -3,13 +3,13 @@ package com.jeancorzo.rickandmorty.characters.repository
 import com.jeancorzo.rickandmorty.characters.model.Character
 import com.jeancorzo.rickandmorty.characters.service.dto.CharacterDto
 import com.jeancorzo.rickandmorty.characters.service.dto.CharacterListDto
-
-fun CharacterListDto.toCharacterList(): List<Character> {
-    return this.results.map { it.toCharacter() }
+import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
+fun CharacterListDto.toCharacterEntityList(): List<CharacterEntity> {
+    return this.results.map { it.toCharacterEntity() }
 }
 
-fun CharacterDto.toCharacter(): Character {
-    return Character(
+fun CharacterDto.toCharacterEntity(): CharacterEntity {
+    return CharacterEntity(
         this.id,
         this.name,
         this.status,
@@ -19,6 +19,20 @@ fun CharacterDto.toCharacter(): Character {
         this.location.name,
         this.image,
         this.episode.size
+    )
+}
+
+fun CharacterEntity.toCharacter() : Character {
+    return Character(
+        this.id,
+        this.name,
+        this.status,
+        this.species,
+        this.gender,
+        this.origin,
+        this.location,
+        this.imageUrl,
+        this.numberOfEpisodes
     )
 }
 

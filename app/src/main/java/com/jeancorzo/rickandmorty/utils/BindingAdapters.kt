@@ -8,9 +8,11 @@ import com.jeancorzo.rickandmorty.R
 
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, imageUrl: String) {
-    view.load(imageUrl) {
-        val pixels = view.context.resources.getDimensionPixelSize(R.dimen.recycler_item_image_corners).toFloat()
-        this.transformations(RoundedCornersTransformation(pixels))
+fun loadImage(view: ImageView, imageUrl: String?) {
+    imageUrl.isNullOrBlank().let {
+        view.load(imageUrl) {
+            val pixels = view.context.resources.getDimensionPixelSize(R.dimen.recycler_item_image_corners).toFloat()
+            this.transformations(RoundedCornersTransformation(pixels))
+        }
     }
 }

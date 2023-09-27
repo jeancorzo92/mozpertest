@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.devtools.ksp")
     kotlin("kapt")
 }
 
@@ -58,8 +59,13 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.retrofit2.kotlin.coroutines.adapter)
     implementation(libs.paging.runtime.ktx)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.room.paging)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+    ksp(libs.databinding.compiler)
     testImplementation(libs.junit)
-    kapt(libs.databinding.compiler)
     androidTestImplementation(libs.android.junit)
     androidTestImplementation(libs.android.espresso)
 }

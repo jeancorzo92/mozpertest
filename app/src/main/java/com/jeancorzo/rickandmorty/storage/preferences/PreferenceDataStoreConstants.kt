@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.storage
+package com.jeancorzo.rickandmorty.storage.preferences
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
 

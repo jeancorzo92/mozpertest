@@ -12,5 +12,14 @@
         android:padding="@dimen/recycler_item_offset"
         tools:context=".characters.ui.CharactersListFragment" />
 
+    <TextView
+        android:id="@+id/characters_empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:text="@string/empty_list_message"
+        android:layout_gravity="center"/>
+
 </FrameLayout>
 

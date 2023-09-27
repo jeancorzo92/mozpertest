@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.storage
+package com.jeancorzo.rickandmorty.storage.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore

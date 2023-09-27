@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.characters.model.Character
@@ -16,6 +18,8 @@ import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
 import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
 import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
+import com.jeancorzo.rickandmorty.utils.visible
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +32,7 @@ class CharactersListFragment : Fragment() {
     private val characterListAdapter = CharacterListPagingAdapter { character ->
         navigateToCharacterDetail(character)
     }
+    private val headerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
     private val footerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
 
 
@@ -42,31 +47,58 @@ class CharactersListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
-        observeViewModel()
+        observeData()
     }
 
     private fun setUpRecyclerView() {
         val layoutManager = GridLayoutManager(requireContext(), 2).apply {
-            spanSizeLookup = GridSpanSizeLookup(2, characterListAdapter, footerAdapter)
+            spanSizeLookup =
+                GridSpanSizeLookup(2, characterListAdapter, headerAdapter, footerAdapter)
         }
         val itemDecoration = ItemOffsetDecoration(requireContext(), R.dimen.recycler_item_offset)
-        binding.charactersRecyclerView.adapter = characterListAdapter.withLoadStateFooter(footerAdapter)
+        binding.charactersRecyclerView.adapter =
+            characterListAdapter.withLoadStateHeaderAndFooter(headerAdapter, footerAdapter)
         binding.charactersRecyclerView.layoutManager = layoutManager
         binding.charactersRecyclerView.addItemDecoration(itemDecoration)
     }
 
-    private fun observeViewModel() {
+    private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.characterList
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.characterList.collectLatest {
                     characterListAdapter.submitData(it)
                 }
+
+                characterListAdapter.loadStateFlow.collect { loadState ->
+                    handleLoadState(loadState)
+                }
+            }
+
         }
+
+
+    }
+
+    private fun handleLoadState(loadState: CombinedLoadStates) {
+        headerAdapter.loadState = loadState.mediator
+            ?.refresh
+            ?.takeIf { it is LoadState.Error && characterListAdapter.itemCount > 0 }
+            ?: loadState.prepend
+
+        val isListEmpty = loadState.refresh is LoadState.NotLoading && characterListAdapter.itemCount == 0
+        val listIsVisible = loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading
+
+        binding.charactersEmptyList.visible(isListEmpty)
+        binding.charactersRecyclerView.visible(listIsVisible)
     }
 
     private fun navigateToCharacterDetail(character: Character) {
-        findNavController().navigate(CharactersListFragmentDirections.toCharacterDetail(title = character.name, character))
+        findNavController().navigate(
+            CharactersListFragmentDirections.toCharacterDetail(
+                title = character.name,
+                character
+            )
+        )
     }
 
     override fun onDestroyView() {
