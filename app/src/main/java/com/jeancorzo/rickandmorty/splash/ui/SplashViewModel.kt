@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.splash
+package com.jeancorzo.rickandmorty.splash.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.jeancorzo.rickandmorty.characters.model.Character
+import com.jeancorzo.rickandmorty.characters.domain.model.Character
 import com.jeancorzo.rickandmorty.databinding.ItemCharacterBinding
 
 class CharacterListPagingAdapter(

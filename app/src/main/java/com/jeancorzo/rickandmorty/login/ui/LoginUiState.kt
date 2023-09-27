@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.login
+package com.jeancorzo.rickandmorty.login.ui
 
 sealed interface LoginUiState {
     data object WaitingUserInput : LoginUiState

@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.episodes
+package com.jeancorzo.rickandmorty.episodes.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

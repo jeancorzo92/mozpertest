@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.characters.model
+package com.jeancorzo.rickandmorty.characters.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

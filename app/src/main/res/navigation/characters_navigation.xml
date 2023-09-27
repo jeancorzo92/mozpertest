@@ -25,7 +25,7 @@
             app:argType="string" />
         <argument
             android:name="character"
-            app:argType="com.jeancorzo.rickandmorty.characters.model.Character" />
+            app:argType="com.jeancorzo.rickandmorty.characters.domain.model.Character" />
     </dialog>
 
 

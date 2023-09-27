@@ -1,12 +1,12 @@
-package com.jeancorzo.rickandmorty.splash
+package com.jeancorzo.rickandmorty.splash.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import com.jeancorzo.rickandmorty.R
-import com.jeancorzo.rickandmorty.home.HomeActivity
-import com.jeancorzo.rickandmorty.login.LoginActivity
+import com.jeancorzo.rickandmorty.home.ui.HomeActivity
+import com.jeancorzo.rickandmorty.login.ui.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("CustomSplashScreen")

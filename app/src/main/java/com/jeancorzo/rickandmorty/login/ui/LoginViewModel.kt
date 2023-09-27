@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.login
+package com.jeancorzo.rickandmorty.login.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.jeancorzo.rickandmorty.login.LoginViewModel" />
+            type="com.jeancorzo.rickandmorty.login.ui.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/backgroundColor"
-        tools:context=".login.LoginActivity">
+        tools:context=".login.ui.LoginActivity">
 
         <ImageView
             android:id="@+id/login_image"

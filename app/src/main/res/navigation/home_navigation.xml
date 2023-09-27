@@ -10,14 +10,14 @@
 
     <fragment
         android:id="@+id/locations"
-        android:name="com.jeancorzo.rickandmorty.locations.LocationsFragment"
+        android:name="com.jeancorzo.rickandmorty.locations.ui.LocationsFragment"
         android:label="@string/locations"
         tools:layout="@layout/fragment_locations" >
     </fragment>
 
     <fragment
         android:id="@+id/episodes"
-        android:name="com.jeancorzo.rickandmorty.episodes.EpisodesFragment"
+        android:name="com.jeancorzo.rickandmorty.episodes.ui.EpisodesFragment"
         android:label="@string/episodes"
         tools:layout="@layout/fragment_episodes" />
 

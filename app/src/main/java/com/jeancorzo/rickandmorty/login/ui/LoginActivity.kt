@@ -1,13 +1,12 @@
-package com.jeancorzo.rickandmorty.login
+package com.jeancorzo.rickandmorty.login.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.databinding.ActivityLoginBinding
-import com.jeancorzo.rickandmorty.home.HomeActivity
+import com.jeancorzo.rickandmorty.home.ui.HomeActivity
 import com.jeancorzo.rickandmorty.utils.gone
 import com.jeancorzo.rickandmorty.utils.visible
 import org.koin.androidx.viewmodel.ext.android.viewModel

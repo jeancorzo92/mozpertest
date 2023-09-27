@@ -13,7 +13,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jeancorzo.rickandmorty.R
-import com.jeancorzo.rickandmorty.characters.model.Character
+import com.jeancorzo.rickandmorty.characters.domain.model.Character
 import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
 import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
 import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup

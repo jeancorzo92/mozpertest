@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.home
+package com.jeancorzo.rickandmorty.home.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.RemoteMediator
 import androidx.paging.map
-import com.jeancorzo.rickandmorty.characters.model.Character
+import com.jeancorzo.rickandmorty.characters.domain.model.Character
 import com.jeancorzo.rickandmorty.storage.db.AppDatabase
 import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
 import kotlinx.coroutines.flow.Flow

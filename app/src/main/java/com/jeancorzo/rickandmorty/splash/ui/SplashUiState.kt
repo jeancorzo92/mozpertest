@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.splash
+package com.jeancorzo.rickandmorty.splash.ui
 
 sealed interface SplashUiState {
     data object Loading : SplashUiState

@@ -7,7 +7,7 @@
 
         <variable
             name="character"
-            type="com.jeancorzo.rickandmorty.characters.model.Character" />
+            type="com.jeancorzo.rickandmorty.characters.domain.model.Character" />
 
         <variable
             name="characterItemClick"

@@ -1,6 +1,6 @@
 package com.jeancorzo.rickandmorty.characters.repository
 
-import com.jeancorzo.rickandmorty.characters.model.Character
+import com.jeancorzo.rickandmorty.characters.domain.model.Character
 import com.jeancorzo.rickandmorty.characters.service.dto.CharacterDto
 import com.jeancorzo.rickandmorty.characters.service.dto.CharacterListDto
 import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity

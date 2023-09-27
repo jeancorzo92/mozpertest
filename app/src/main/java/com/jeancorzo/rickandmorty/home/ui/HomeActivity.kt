@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.home
+package com.jeancorzo.rickandmorty.home.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,17 +6,15 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.databinding.ActivityHomeBinding
-import com.jeancorzo.rickandmorty.login.LoginActivity
+import com.jeancorzo.rickandmorty.login.ui.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
