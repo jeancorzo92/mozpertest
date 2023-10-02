@@ -1,25 +1,25 @@
-package com.jeancorzo.rickandmorty.characters.repository
+package com.jeancorzo.rickandmorty.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.jeancorzo.rickandmorty.characters.service.CharactersApiService
-import com.jeancorzo.rickandmorty.repository.PaginationHelperApi
+import com.jeancorzo.rickandmorty.characters.service.RemoteListService
+import com.jeancorzo.rickandmorty.characters.service.dto.ListDto
 import com.jeancorzo.rickandmorty.storage.db.AppDatabase
+import com.jeancorzo.rickandmorty.storage.db.dao.InsertAllDao
 import retrofit2.HttpException
-import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-class CharacterRemoteMediator(
+open class ListRemoteMediator<T: ListDto<*>, S : Any>(
     private val database: AppDatabase,
-    private val characterService: CharactersApiService,
-    private val paginationHelper: PaginationHelperApi
-) : RemoteMediator<Int, CharacterEntity>() {
-
-    private val characterDao = database.characterDao()
+    private val dao : InsertAllDao<S>,
+    private val service: RemoteListService<T>,
+    private val paginationHelper: PaginationHelperApi,
+    private val dataMapper: DataMapper<T, List<S>>
+) : RemoteMediator<Int, S>() {
 
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.SKIP_INITIAL_REFRESH
@@ -27,7 +27,7 @@ class CharacterRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, CharacterEntity>
+        state: PagingState<Int, S>
     ): MediatorResult {
         return try {
             val pageNumber = when (loadType) {
@@ -39,11 +39,11 @@ class CharacterRemoteMediator(
                 }
             }
 
-            val response = characterService.getCharacterList(pageNumber)
+            val response = service.getList(pageNumber)
             paginationHelper.updatePageNumber(response.info)
 
             database.withTransaction {
-                characterDao.insertAll(response.toCharacterEntityList())
+                dao.insertAll(dataMapper.map(response))
             }
 
             MediatorResult.Success(endOfPaginationReached = paginationHelper.getNextPageNumber() == -1)

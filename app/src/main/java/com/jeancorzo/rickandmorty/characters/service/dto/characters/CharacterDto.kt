@@ -1,4 +1,7 @@
-package com.jeancorzo.rickandmorty.characters.service.dto
+package com.jeancorzo.rickandmorty.characters.service.dto.characters
+
+import com.jeancorzo.rickandmorty.characters.service.dto.LocationDto
+import com.jeancorzo.rickandmorty.characters.service.dto.OriginDto
 
 data class CharacterDto(
     val id: Int,

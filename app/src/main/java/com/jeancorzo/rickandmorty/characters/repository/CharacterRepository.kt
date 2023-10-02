@@ -4,9 +4,10 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.RemoteMediator
 import androidx.paging.map
 import com.jeancorzo.rickandmorty.characters.domain.model.Character
+import com.jeancorzo.rickandmorty.characters.service.dto.characters.CharacterListDto
+import com.jeancorzo.rickandmorty.repository.ListRemoteMediator
 import com.jeancorzo.rickandmorty.storage.db.AppDatabase
 import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ private const val PAGE_SIZE = 12
 @OptIn(ExperimentalPagingApi::class)
 class CharacterRepository(
     private val appDatabase: AppDatabase,
-    private val remoteMediator: CharacterRemoteMediator
+    private val remoteMediator: ListRemoteMediator<CharacterListDto, CharacterEntity>
 ) : CharacterRepositoryAPI {
 
     override fun getCharacterList(): Flow<PagingData<Character>> {

@@ -1,11 +1,11 @@
 package com.jeancorzo.rickandmorty.characters.repository
 
 import com.jeancorzo.rickandmorty.characters.domain.model.Character
-import com.jeancorzo.rickandmorty.characters.service.dto.CharacterDto
-import com.jeancorzo.rickandmorty.characters.service.dto.CharacterListDto
+import com.jeancorzo.rickandmorty.characters.service.dto.characters.CharacterDto
+import com.jeancorzo.rickandmorty.characters.service.dto.characters.CharacterListDto
 import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
 fun CharacterListDto.toCharacterEntityList(): List<CharacterEntity> {
-    return this.results.map { it.toCharacterEntity() }
+    return this.data.map { it.toCharacterEntity() }
 }
 
 fun CharacterDto.toCharacterEntity(): CharacterEntity {

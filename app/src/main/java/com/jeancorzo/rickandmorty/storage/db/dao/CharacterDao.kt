@@ -8,10 +8,7 @@ import androidx.room.Query
 import com.jeancorzo.rickandmorty.storage.db.entities.CharacterEntity
 
 @Dao
-interface CharacterDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(characters: List<CharacterEntity>)
+interface CharacterDao : InsertAllDao<CharacterEntity> {
 
     @Query("SELECT * FROM characterentity")
     fun getAllCharacters(): PagingSource<Int, CharacterEntity>
