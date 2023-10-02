@@ -4,7 +4,7 @@ import com.jeancorzo.rickandmorty.characters.service.dto.characters.CharacterLis
 
 class CharacterRemoteListService(private val charactersApiService: CharactersApiService) :
     RemoteListService<CharacterListDto> {
-    override suspend fun getList(pageNumber: Number): CharacterListDto {
+    override suspend fun getList(pageNumber: Int): CharacterListDto {
         return charactersApiService.getCharacterList(pageNumber)
     }
 }
