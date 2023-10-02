@@ -12,6 +12,6 @@ import org.koin.dsl.module
 val charactersModule = module {
     viewModel { CharactersViewModel(get()) }
     factory { get<ServiceGenerator>().createService(CharactersApiService::class.java) }
-    factory { CharacterRemoteMediator(get(), get()) }
+    factory { CharacterRemoteMediator(get(), get(), get()) }
     factory<CharacterRepositoryAPI> { CharacterRepository(get(), get()) }
 }

@@ -9,6 +9,7 @@ import com.jeancorzo.rickandmorty.characters.di.charactersModule
 import com.jeancorzo.rickandmorty.di.appModule
 import com.jeancorzo.rickandmorty.home.di.homeModule
 import com.jeancorzo.rickandmorty.login.di.loginModule
+import com.jeancorzo.rickandmorty.repository.di.repositoryModule
 import com.jeancorzo.rickandmorty.service.di.serviceModule
 import com.jeancorzo.rickandmorty.session.di.sessionModule
 import com.jeancorzo.rickandmorty.splash.di.splashModule
@@ -35,7 +36,8 @@ class RickAndMortyApplication : Application(), ImageLoaderFactory {
                 sessionModule,
                 storageModule,
                 serviceModule,
-                databaseModule
+                databaseModule,
+                repositoryModule
             )
         }
     }
