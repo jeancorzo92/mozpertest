@@ -20,7 +20,7 @@ class EpisodeRepository(
     private val remoteMediator: ListRemoteMediator<EpisodeListDto, EpisodeEntity>,
 ) : EpisodeRepositoryAPI {
 
-    override suspend fun getEpisodeList(): Flow<PagingData<Episode>> {
+    override fun getEpisodeList(): Flow<PagingData<Episode>> {
         return Pager(
             config = PagingConfig(PAGE_SIZE),
             remoteMediator = remoteMediator,

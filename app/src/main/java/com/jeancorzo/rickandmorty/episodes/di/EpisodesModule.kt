@@ -1,6 +1,5 @@
 package com.jeancorzo.rickandmorty.episodes.di
 
-import com.jeancorzo.rickandmorty.characters.repository.CharacterListDtoToEntityMapper
 import com.jeancorzo.rickandmorty.episodes.repository.EpisodeListDtoToEntityMapper
 import com.jeancorzo.rickandmorty.episodes.repository.EpisodeRepository
 import com.jeancorzo.rickandmorty.episodes.repository.EpisodeRepositoryAPI
@@ -8,7 +7,6 @@ import com.jeancorzo.rickandmorty.episodes.service.EpisodeListRemoteService
 import com.jeancorzo.rickandmorty.episodes.service.EpisodesApiService
 import com.jeancorzo.rickandmorty.episodes.service.dto.EpisodeListDto
 import com.jeancorzo.rickandmorty.repository.ListRemoteMediator
-import com.jeancorzo.rickandmorty.repository.PaginationHelper
 import com.jeancorzo.rickandmorty.service.ServiceGenerator
 import com.jeancorzo.rickandmorty.storage.db.AppDatabase
 import com.jeancorzo.rickandmorty.storage.db.entities.EpisodeEntity

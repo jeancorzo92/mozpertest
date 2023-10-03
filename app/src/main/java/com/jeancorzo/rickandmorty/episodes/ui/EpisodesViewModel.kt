@@ -5,6 +5,6 @@ import com.jeancorzo.rickandmorty.episodes.repository.EpisodeRepositoryAPI
 
 class EpisodesViewModel(episodeRepository: EpisodeRepositoryAPI) : ViewModel() {
 
-    val episodes = episodeRepository.getEpisodeList()
+//    val episodes = episodeRepository.getEpisodeList()
 
 }

@@ -15,7 +15,7 @@ fun EpisodeDto.toEntity(): EpisodeEntity {
         this.name,
         this.type,
         this.dimension,
-        this.residents
+        this.residents.size
     )
 }
 

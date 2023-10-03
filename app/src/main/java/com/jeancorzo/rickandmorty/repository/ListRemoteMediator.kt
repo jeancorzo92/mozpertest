@@ -31,7 +31,7 @@ open class ListRemoteMediator<T: ListDto<*>, S : Any>(
     ): MediatorResult {
         return try {
             val pageNumber = when (loadType) {
-                LoadType.REFRESH -> paginationHelper.getFirstPageNumber()
+                LoadType.REFRESH -> 1
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
                 LoadType.APPEND -> {
                     if (paginationHelper.hasNextPage()) return MediatorResult.Success(endOfPaginationReached = true)

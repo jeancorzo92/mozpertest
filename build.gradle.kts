@@ -10,3 +10,5 @@ buildscript {
         classpath(libs.navigation.safe.args.gradle.plugin)
     }
 }
+
+

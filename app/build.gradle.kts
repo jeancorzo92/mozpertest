@@ -7,6 +7,17 @@ plugins {
     kotlin("kapt")
 }
 
+class RoomSchemaArgProvider(
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    val schemaDir: File
+) : CommandLineArgumentProvider {
+    override fun asArguments(): Iterable<String> {
+        return listOf("room.schemaLocation=${schemaDir.path}")
+    }
+
+}
+
 android {
     namespace = "com.jeancorzo.rickandmorty"
     compileSdk = 34
@@ -42,6 +53,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+ksp {
+    arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
 }
 
 dependencies {

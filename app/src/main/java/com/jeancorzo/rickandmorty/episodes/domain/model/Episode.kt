@@ -5,5 +5,5 @@ data class Episode(
     val name: String,
     val type: String,
     val dimension: String,
-    val residents: List<String>
+    val residents: Int
 )
