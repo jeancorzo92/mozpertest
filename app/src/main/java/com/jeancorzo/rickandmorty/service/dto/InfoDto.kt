@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.characters.service.dto
+package com.jeancorzo.rickandmorty.service.dto
 
 data class InfoDto(
     val count: Int,

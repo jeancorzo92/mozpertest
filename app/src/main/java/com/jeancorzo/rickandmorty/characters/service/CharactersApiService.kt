@@ -1,6 +1,6 @@
 package com.jeancorzo.rickandmorty.characters.service
 
-import com.jeancorzo.rickandmorty.characters.service.dto.characters.CharacterListDto
+import com.jeancorzo.rickandmorty.characters.service.dto.CharacterListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

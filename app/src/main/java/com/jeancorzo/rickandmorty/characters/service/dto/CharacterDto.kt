@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.characters.service.dto.characters
+package com.jeancorzo.rickandmorty.characters.service.dto
 
 import com.jeancorzo.rickandmorty.characters.service.dto.LocationDto
 import com.jeancorzo.rickandmorty.characters.service.dto.OriginDto

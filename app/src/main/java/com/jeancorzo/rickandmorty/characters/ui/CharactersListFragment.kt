@@ -19,7 +19,6 @@ import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
 import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
 import com.jeancorzo.rickandmorty.utils.visible
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

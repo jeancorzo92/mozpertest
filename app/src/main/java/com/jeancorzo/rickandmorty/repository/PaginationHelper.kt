@@ -1,6 +1,6 @@
 package com.jeancorzo.rickandmorty.repository
 
-import com.jeancorzo.rickandmorty.characters.service.dto.InfoDto
+import com.jeancorzo.rickandmorty.service.dto.InfoDto
 
 private const val FIRST_PAGE_NUMBER = 1
 

@@ -5,8 +5,8 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.jeancorzo.rickandmorty.characters.service.RemoteListService
-import com.jeancorzo.rickandmorty.characters.service.dto.ListDto
+import com.jeancorzo.rickandmorty.service.RemoteListService
+import com.jeancorzo.rickandmorty.service.dto.ListDto
 import com.jeancorzo.rickandmorty.storage.db.AppDatabase
 import com.jeancorzo.rickandmorty.storage.db.dao.InsertAllDao
 import retrofit2.HttpException

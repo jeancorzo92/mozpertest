@@ -1,4 +1,4 @@
-package com.jeancorzo.rickandmorty.characters.service.dto
+package com.jeancorzo.rickandmorty.service.dto
 
 abstract class ListDto<T> (
     open val info: InfoDto,
