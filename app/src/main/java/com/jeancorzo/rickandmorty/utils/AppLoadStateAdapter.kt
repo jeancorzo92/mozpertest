@@ -9,7 +9,7 @@ import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.databinding.ItemLoadingBinding
 
 class AppLoadStateAdapter(
-    private val retry: () -> Unit
+    private val retryListener: RetryListener
 ) : LoadStateAdapter<LoadStateViewHolder>() {
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
@@ -17,19 +17,19 @@ class AppLoadStateAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
         val binding = ItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LoadStateViewHolder(binding, retry)
+        return LoadStateViewHolder(binding, retryListener)
     }
 
 }
 
 class LoadStateViewHolder(
     private val binding: ItemLoadingBinding,
-    private val retry: () -> Unit
+    private val retryListener: RetryListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(loadState: LoadState) {
         binding.run {
-            binding.itemLoadingButton.setOnClickListener { retry() }
+            binding.itemLoadingButton.setOnClickListener { retryListener.retry() }
             binding.itemLoadingText.text = if (loadState is LoadState.Error) {
                 itemView.resources.getText(R.string.error_loading_data)
             } else {
@@ -41,3 +41,4 @@ class LoadStateViewHolder(
         }
     }
 }
+

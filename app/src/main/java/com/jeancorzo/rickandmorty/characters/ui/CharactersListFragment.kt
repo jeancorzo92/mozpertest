@@ -11,28 +11,41 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.paging.LoadStateAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jeancorzo.rickandmorty.R
 import com.jeancorzo.rickandmorty.characters.domain.model.Character
 import com.jeancorzo.rickandmorty.databinding.FragmentCharactersBinding
-import com.jeancorzo.rickandmorty.utils.AppLoadStateAdapter
 import com.jeancorzo.rickandmorty.utils.GridSpanSizeLookup
 import com.jeancorzo.rickandmorty.utils.ItemOffsetDecoration
+import com.jeancorzo.rickandmorty.utils.LoadStateViewHolder
+import com.jeancorzo.rickandmorty.utils.RetryListener
 import com.jeancorzo.rickandmorty.utils.visible
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CharactersListFragment : Fragment() {
 
     private var mBinding: FragmentCharactersBinding? = null
     private val binding get() = mBinding!!
     private val viewModel: CharactersViewModel by viewModel()
-    private val characterListAdapter = CharacterListPagingAdapter { character ->
+    private val characterClickListener = CharacterClickListener { character: Character ->
         navigateToCharacterDetail(character)
     }
-    private val headerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
-    private val footerAdapter = AppLoadStateAdapter(characterListAdapter::retry)
+    private val characterListAdapter: PagingDataAdapter<Character, CharacterListPagingAdapter.CharacterViewHolder> by inject {
+        parametersOf(characterClickListener)
+    }
+    private val retryListener = RetryListener { characterListAdapter.retry() }
+    private val headerAdapter: LoadStateAdapter<LoadStateViewHolder> by inject {
+        parametersOf(retryListener)
+    }
+    private val footerAdapter: LoadStateAdapter<LoadStateViewHolder> by inject {
+        parametersOf(retryListener)
+    }
 
 
     override fun onCreateView(
