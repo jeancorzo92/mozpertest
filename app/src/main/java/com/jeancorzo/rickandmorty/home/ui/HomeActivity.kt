@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,7 +18,7 @@ import com.jeancorzo.rickandmorty.databinding.ActivityHomeBinding
 import com.jeancorzo.rickandmorty.login.ui.LoginActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : FragmentActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var navController: NavController
@@ -33,44 +34,24 @@ class HomeActivity : AppCompatActivity() {
         super.onPostCreate(savedInstanceState)
 
         setUpNavigation()
-        setUpAppBar()
+        setUpMenu()
         observeViewModel()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onNavigateUp()
     }
 
     private fun setUpNavigation() {
         navController = findNavController(R.id.home_nav_host_fragment)
-        binding.homeBottomNavigation.setupWithNavController(navController)
     }
 
-    private fun setUpAppBar() {
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.characters_navigation,
-                R.id.locations,
-                R.id.episodes
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.home_toolbar_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.logout -> {
-                viewModel.logoutRequested()
-                true
+    private fun setUpMenu() {
+        binding.homeToolbar.setOnMenuItemClickListener {  menuItem ->
+            when (menuItem.itemId) {
+                R.id.logout -> {
+                    viewModel.logoutRequested()
+                    true
+                }
+                else -> false
             }
-            else -> super.onOptionsItemSelected(item)
         }
-
     }
 
     private fun observeViewModel() {
