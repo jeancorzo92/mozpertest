@@ -14,4 +14,10 @@ data class Character(
     val location: String,
     val imageUrl: String,
     val numberOfEpisodes: Int = 0
-) : Parcelable
+) : Parcelable {
+
+    fun isAlive(): Boolean {
+        return status == "Alive"
+    }
+
+}

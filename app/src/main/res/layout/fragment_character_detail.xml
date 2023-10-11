@@ -10,129 +10,113 @@
             type="com.jeancorzo.rickandmorty.characters.domain.model.Character" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/character_image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:minWidth="80dp"
+            app:imageUrl="@{character.imageUrl}"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_characters" />
 
-            <ImageView
-                android:id="@+id/character_image"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:imageUrl="@{character.imageUrl}"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_characters" />
+        <TextView
+            android:id="@+id/character_name"
+            style="@style/CharacterDetailTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@{character.name}"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/character_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/character_image"
+            app:layout_constraintTop_toTopOf="@+id/character_image"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Rick Sanchez" />
 
-            <TextView
-                android:id="@+id/character_name"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintVertical_chainStyle="packed"
-                android:text="@{@string/character_name(character.name)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_status"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/character_image"
-                tools:text="Name: Rick Sanchez" />
+        <TextView
+            android:id="@+id/character_status"
+            style="@style/CharacterDetailTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/circle_icon"
+            android:drawablePadding="8dp"
+            android:text="@{@string/character_status_species_gender(character.status, character.species, character.gender)}"
+            app:drawableTint="@{character.isAlive() ? @color/alive_status : @color/dead_status}"
+            app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toBottomOf="@+id/character_image"
+            app:layout_constraintEnd_toEndOf="@+id/character_name"
+            app:layout_constraintStart_toStartOf="@+id/character_name"
+            app:layout_constraintTop_toBottomOf="@+id/character_name"
+            tools:text="Alive" />
 
-            <TextView
-                android:id="@+id/character_status"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/character_status(character.status)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_species"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_name"
-                tools:text="Status: Alive" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/character_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="character_image, character_status" />
 
-            <TextView
-                android:id="@+id/character_species"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/character_species(character.species)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_gender"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_status"
-                tools:text="Status: Alive" />
+        <TextView
+            android:id="@+id/character_last_location_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/last_known_location"
+            app:layout_constraintBottom_toTopOf="@+id/character_last_location"
+            app:layout_constraintEnd_toEndOf="@+id/character_name"
+            app:layout_constraintStart_toStartOf="@+id/character_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_barrier" />
 
-            <TextView
-                android:id="@+id/character_gender"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/character_gender(character.gender)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_origin"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_species"
-                tools:text="Status: Alive" />
+        <TextView
+            android:id="@+id/character_last_location"
+            style="@style/CharacterDetailTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{character.location}"
+            app:layout_constraintBottom_toTopOf="@+id/character_number_of_episodes_label"
+            app:layout_constraintEnd_toEndOf="@+id/character_name"
+            app:layout_constraintStart_toStartOf="@+id/character_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_last_location_label"
+            tools:text="Earth" />
 
-            <TextView
-                android:id="@+id/character_origin"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/character_origin(character.origin)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_location"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_gender"
-                tools:text="Status: Alive" />
+        <TextView
+            android:id="@+id/character_number_of_episodes_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/number_of_episodes"
+            app:layout_constraintBottom_toTopOf="@+id/character_episodes"
+            app:layout_constraintEnd_toEndOf="@+id/character_name"
+            app:layout_constraintStart_toStartOf="@+id/character_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_last_location" />
 
-            <TextView
-                android:id="@+id/character_location"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/character_location(character.location)}"
-                app:layout_constraintBottom_toTopOf="@+id/character_episodes"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_origin"
-                tools:text="Status: Alive" />
+        <TextView
+            android:id="@+id/character_episodes"
+            style="@style/CharacterDetailTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@{Integer.toString(character.numberOfEpisodes)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/character_name"
+            app:layout_constraintStart_toStartOf="@+id/character_image"
+            app:layout_constraintTop_toBottomOf="@+id/character_number_of_episodes_label"
+            tools:text="48" />
 
-            <TextView
-                android:id="@+id/character_episodes"
-                style="@style/CharacterDetailTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:text="@{@string/character_number_of_episodes(character.numberOfEpisodes)}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/character_name"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/character_name"
-                app:layout_constraintTop_toBottomOf="@+id/character_location"
-                tools:text="Status: Alive" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

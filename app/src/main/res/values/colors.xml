@@ -52,4 +52,7 @@
     <color name="surface_variant_dark">#44483d</color>
     <color name="on_surface_variant_dark">#c4c8ba</color>
     <color name="outline_dark">#8e9285</color>
+    <!-- Unchanging colors. -->
+    <color name="alive_status">#55CC44</color>
+    <color name="dead_status">#D63D2E</color>
 </resources>
