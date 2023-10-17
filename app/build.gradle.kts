@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.devtools.ksp")
-    kotlin("kapt")
+    id("com.apollographql.apollo3")
 }
 
 class RoomSchemaArgProvider(
@@ -59,6 +59,12 @@ ksp {
     arg(RoomSchemaArgProvider(File(projectDir, "schemas")))
 }
 
+apollo {
+    service("rickandmorty") {
+        packageName.set("com.jeancorzo.rickandmortyapi")
+    }
+}
+
 dependencies {
 
     implementation(libs.android.ktx)
@@ -77,6 +83,7 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     implementation(libs.room.paging)
+    implementation(libs.apollo.runtime)
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
     ksp(libs.databinding.compiler)
@@ -84,3 +91,4 @@ dependencies {
     androidTestImplementation(libs.android.junit)
     androidTestImplementation(libs.android.espresso)
 }
+

@@ -1,5 +1,6 @@
 [versions]
 androidGradlePlugin = "8.1.1"
+apolloRuntime = "3.8.2"
 coil = "2.4.0"
 datastorePreferences = "1.0.0"
 koin = "3.5.0"
@@ -20,6 +21,7 @@ room = "2.5.2"
 [libraries]
 android-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx"}
 android-material = { group = "com.google.android.material", name = "material", version.ref = "material"}
+apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apolloRuntime" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 databinding-compiler = { module = "androidx.databinding:databinding-compiler", version.ref = "androidGradlePlugin" }
